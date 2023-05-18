@@ -1,0 +1,5 @@
+com\swad\datalink\executor\CustomTableEnvironment.class
+com\swad\datalink\executor\SqlManager.class
+com\swad\datalink\executor\ExecutorSetting.class
+com\swad\datalink\executor\EnvironmentSetting.class
+com\swad\datalink\executor\Executor.class
