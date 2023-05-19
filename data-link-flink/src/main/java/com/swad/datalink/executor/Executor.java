@@ -1,11 +1,13 @@
 package com.swad.datalink.executor;
 
 import com.swad.datalink.asserts.Asserts;
+import com.swad.datalink.utils.SqlUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.configuration.PipelineOptions;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.TableResult;
 
 import java.util.Map;
 
@@ -37,8 +39,10 @@ public class Executor {
         return environment.execute(jobName);
     }
 
-    public void executeSql(String statement) {
-
+    public TableResult executeSql(String statement) {
+        statement = SqlUtil.removeNote(statement);
+        statement = sqlManager.parseStatement(statement).trim();
+        return customEnvironment.executeSql(statement);
     }
 
     private Executor(ExecutorSetting executorSetting, StreamExecutionEnvironment environment) {
